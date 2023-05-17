@@ -1,0 +1,37 @@
+<div class="container">
+    <br>
+    <h4> Consulta del tiempo por ciudad </h4>
+    <h5> {{ fecha | date:'dd/MM/yyyy' }} </h5> <!-- Usamos un pipe de fecha para modificar el formato por defecto de la función Date()-->
+    <div class="col-lg-6 alineacion card">
+        <form [formGroup]="formulario" (ngSubmit)="consultar()"> <!-- Añadimos el nombre del formGroup que hemos creado para matchear el formulario del ts con el html (con formControlName de los inputs), y añadimos la funcion consultar para que se triggeree cuando presionemos el submit de angular del formulario-->
+            <div class="form-group">
+              <label for="exampleInputCiudad">Ciudad</label>
+              <input type="text" class="form-control" id="exampleInputCiudad" aria-describedby="emailHelp" formControlName="ciudad">
+              <p class="text-danger" *ngIf="formulario.get('ciudad')!.invalid && formulario.get('ciudad')!.touched">Por favor escriba solo letras</p>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputCodigo">Código Ciudad</label>
+              <input type="text" class="form-control" id="exampleInputCodigo" formControlName="codigo">
+              <p class="text-danger" *ngIf="formulario.get('codigo')!.invalid && formulario.get('codigo')!.touched">Por favor escriba solo letras</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Consultar</button>
+          </form>
+          <p class="text-danger" *ngIf="showError"> {{ mensajeError }} </p>
+    </div>
+
+    <div class="col-lg-6 alineacion">
+        <div class="card">
+            <div class="card-body">
+              <ul>
+                <li>Descripción: {{ descripcion }}</li> <!-- Para traer variables del ts las invocamos con doble llave {{}}-->
+                <li>Temperatura: {{ temperatura }}</li>
+                <li>Humedad: {{ humedad }}</li>
+                <li>Ciudad: {{ name | uppercase }}</li> <!-- Usamos un pipe predefinido en Angular para transformar el string en mayúsculas -->
+                <li>Latitud: {{ latitud }}</li>
+                <li>Longitud: {{ longitud }}</li>
+              </ul>
+            </div>
+          </div>
+    </div>
+    
+</div>

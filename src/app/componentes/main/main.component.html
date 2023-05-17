@@ -1,0 +1,24 @@
+<br>
+<div class="container" *ngIf="showCiudad">
+    <p> Ciudades </p>
+    <ul *ngFor="let ciudad of ciudades"> <!-- Directiva *ngFor para crear un bucle con Angular en el contenido HTML, en este caso recorremos un array-->
+        <li> {{ ciudad }} </li>
+    </ul>
+</div>
+<div class="container">
+    <button class="btn btn-primary" (click)="mostrar()" *ngIf="showCiudad"> Esconder Ciudades </button> <!-- Directiva click para controlar una accion-->
+    <button class="btn btn-primary" (click)="mostrar()" *ngIf="!showCiudad"> Mostrar Ciudades </button>
+</div>
+
+<br>
+
+<div class="container">
+    <h4>NgClass</h4>
+    <br>
+    <div class="alert" role="alert" [ngClass]="{'alert-primary': changeCss, 'alert-warning': !changeCss}"> <!-- Directiva ngClass de angular para modificar la clase css en caso de cumplirse una expresión booleana-->
+        Estilos Alertas Bootstrap
+    </div>
+    <div>
+        <button class="btn btn-primary" (click)="cambioCss()"> Cambiar Estilo CSS</button>
+    </div>
+</div>
